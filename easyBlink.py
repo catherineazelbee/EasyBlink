@@ -266,23 +266,33 @@ def delete_setup(name):
     refresh_saved_setups_ui()
 
 # Saved Setups Window
-def refresh_saved_setups_ui():
+def refresh_saved_setups_ui(*args):
+    # delete any old floating window
     if mc.window("savedSetupsWin", exists=True):
         mc.deleteUI("savedSetupsWin")
-    win = mc.window("savedSetupsWin", title="EasyBlink – Saved Setups", widthHeight=(300, 200))
+    
+    # build a fresh floating window
+    win = mc.window(
+        "savedSetupsWin",
+        title="EasyBlink – Saved Setups",
+        widthHeight=(300, 200),
+        sizeable=True
+    )
     mc.columnLayout(adjustableColumn=True, rowSpacing=5)
     for name in easyblink_setups:
         mc.rowLayout(numberOfColumns=3, columnWidth3=(150, 70, 60))
         mc.text(label=name, align="left")
-        mc.button(label="Load", command=lambda _,n=name: load_setup(n))
+        mc.button(label="Load",   command=lambda _,n=name: load_setup(n))
         mc.button(label="Delete", command=lambda _,n=name: delete_setup(n))
         mc.setParent("..")
     mc.showWindow(win)
 
 # Build the UI
 def create_easyblink_ui():
+# delete old control
     if mc.workspaceControl("EasyBlinkWC", q=True, exists=True):
         mc.deleteUI("EasyBlinkWC", control=True)
+
     # create a dockable workspaceControl
     wc = mc.workspaceControl(
         "EasyBlinkWC",
@@ -292,12 +302,27 @@ def create_easyblink_ui():
         initialHeight=740,
         retain=False
     )
-    
-    # parent columnLayout under the workspaceControl
-    mc.columnLayout("easyBlinkCol", parent=wc, adjustableColumn=True, rowSpacing=10, columnAlign="center")
+
+    # create a scrollLayout under the workspaceControl
+    scroll = mc.scrollLayout(
+        "easyBlinkScroll", 
+        parent=wc, 
+        childResizable=True, 
+        horizontalScrollBarThickness=0, 
+        verticalScrollBarThickness=16
+    )
+
+    # now build your column inside that scrollLayout
+    mc.columnLayout(
+        "easyBlinkCol", 
+        parent=scroll, 
+        adjustableColumn=True, 
+        rowSpacing=10, 
+        columnAlign="center"
+    )
 
     # Eye controls
-    mc.separator(style='in')
+    mc.separator(style='in', parent="easyBlinkCol")
     mc.text(label="👁️ Blink Controls", font="boldLabelFont")
     mc.text(
         label="Select your left & right eye controls, then choose their blink attribute name. Then set your open/closed/wide values. Make sure names are the same as they are in script editor (place a keyframe with script editor open to see exact attribute names).",
@@ -391,8 +416,6 @@ def create_easyblink_ui():
     mc.text(label="💾 Save Inputs", font="boldLabelFont")
     mc.button(label="Save Setup…", command=open_save_setup_ui, height=30, backgroundColor = (0.65, 0.75, 0.65))
     mc.button(label="View Saved Setups", command=refresh_saved_setups_ui, height=30, backgroundColor = (0.78, 0.75, 0.85))
-
-    mc.showWindow(win)
 
 # Launch UI
 create_easyblink_ui()
