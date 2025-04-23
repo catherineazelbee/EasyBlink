@@ -4,8 +4,8 @@ import maya.cmds as mc
 easyblink_data = {
     'left_eye': None,
     'right_eye': None,
-    'left_attr': 'Blink',
-    'right_attr': 'Blink',
+    'left_attr': 'BlinkAttribute',
+    'right_attr': 'BlinkAttribute',
     'open': 0.1,
     'closed': 1.0,
     'wide': 0,
@@ -138,10 +138,10 @@ def set_slow_blink(*args):
         ctrl = easyblink_data[side]
         attr = easyblink_data['left_attr']  if side=='left_eye'  else easyblink_data['right_attr']
         mc.setKeyframe(ctrl, attribute=attr, t=t,   value=ov)
-        mc.setKeyframe(ctrl, attribute=attr, t=t+4, value=cv)
-        mc.setKeyframe(ctrl, attribute=attr, t=t+5, value=cv)
-        mc.setKeyframe(ctrl, attribute=attr, t=t+7, value=wv)
-        mc.setKeyframe(ctrl, attribute=attr, t=t+10, value=ov)
+        mc.setKeyframe(ctrl, attribute=attr, t=t+4, value=cv-0.05)
+        mc.setKeyframe(ctrl, attribute=attr, t=t+6, value=cv)
+        mc.setKeyframe(ctrl, attribute=attr, t=t+10, value=wv)
+        mc.setKeyframe(ctrl, attribute=attr, t=t+14, value=ov)
     # brows
     for side in ['left_brow','right_brow']:
         ctrl = easyblink_data[side]
@@ -149,8 +149,9 @@ def set_slow_blink(*args):
             attr = easyblink_data['brow_attr']
             orig = mc.getAttr(f"{ctrl}.{attr}")
             mc.setKeyframe(ctrl, attribute=attr, t=t,   value=orig)
-            mc.setKeyframe(ctrl, attribute=attr, t=t+4, value=orig-0.1)
-            mc.setKeyframe(ctrl, attribute=attr, t=t+10, value=orig)
+            mc.setKeyframe(ctrl, attribute=attr, t=t+3, value=orig-0.1)
+            mc.setKeyframe(ctrl, attribute=attr, t=t+5, value=orig-0.1)
+            mc.setKeyframe(ctrl, attribute=attr, t=t+13, value=orig)
     # pupils
     for side in ['left_pupil','right_pupil']:
         ctrl = easyblink_data[side]
@@ -158,8 +159,8 @@ def set_slow_blink(*args):
             attr = easyblink_data['pupil_attr']
             orig = mc.getAttr(f"{ctrl}.{attr}")
             mc.setKeyframe(ctrl, attribute=attr, t=t,   value=orig)
-            mc.setKeyframe(ctrl, attribute=attr, t=t+2, value=orig-0.05)
-            mc.setKeyframe(ctrl, attribute=attr, t=t+9, value=orig)
+            mc.setKeyframe(ctrl, attribute=attr, t=t+3, value=orig-0.1)
+            mc.setKeyframe(ctrl, attribute=attr, t=t+13, value=orig)
     mc.inViewMessage(amg="Blink animated!", pos='topCenter', fade=True)
     
 # Prompt window to save setup
