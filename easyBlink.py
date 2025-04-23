@@ -281,11 +281,20 @@ def refresh_saved_setups_ui():
 
 # Build the UI
 def create_easyblink_ui():
-    if mc.window("EasyBlinkWindow", exists=True):
-        mc.deleteUI("EasyBlinkWindow")
-    win = mc.window("EasyBlinkWindow", title="EasyBlink", widthHeight=(360, 740))
-    mc.scrollLayout(cr=True)
-    mc.columnLayout(adjustableColumn=True, rowSpacing=10, columnAlign="center")
+    if mc.workspaceControl("EasyBlinkWC", q=True, exists=True):
+        mc.deleteUI("EasyBlinkWC", control=True)
+    # create a dockable workspaceControl
+    wc = mc.workspaceControl(
+        "EasyBlinkWC",
+        label="EasyBlink",
+        dockToMainWindow=("right", 1),
+        initialWidth=360,
+        initialHeight=740,
+        retain=False
+    )
+    
+    # parent columnLayout under the workspaceControl
+    mc.columnLayout("easyBlinkCol", parent=wc, adjustableColumn=True, rowSpacing=10, columnAlign="center")
 
     # Eye controls
     mc.separator(style='in')
