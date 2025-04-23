@@ -300,7 +300,7 @@ def create_easyblink_ui():
     mc.separator(style='in')
     mc.text(label="👁️ Blink Controls", font="boldLabelFont")
     mc.text(
-        label="Select your left & right eye controls, then choose their blink attribute name. Then set your open/closed/wide values. Make sure names are the same as they are in script editor (place a keyframe with script editor open to see attribute names.",
+        label="Select your left & right eye controls, then choose their blink attribute name. Then set your open/closed/wide values. Make sure names are the same as they are in script editor (place a keyframe with script editor open to see exact attribute names).",
         align="center",
         wordWrap=True
     )
