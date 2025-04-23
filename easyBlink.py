@@ -269,11 +269,11 @@ def create_easyblink_ui():
     mc.setParent("..")
     mc.rowLayout(numberOfColumns=2)
     mc.textField("leftBlinkAttrField",  text="Blink")
-    mc.text(label="← Left Eye Attr")
+    mc.text(label="← Left Eye Attribute")
     mc.setParent("..")
     mc.rowLayout(numberOfColumns=2)
     mc.textField("rightBlinkAttrField", text="Blink")
-    mc.text(label="← Right Eye Attr")
+    mc.text(label="← Right Eye Attribute")
     mc.setParent("..")
     mc.rowColumnLayout(numberOfColumns=2)
     mc.text(label="Open Value:")
@@ -305,7 +305,7 @@ def create_easyblink_ui():
     mc.textField("browAttrField", text=easyblink_data['brow_attr'])
     mc.text(label="← Brow Attribute")
     mc.setParent("..")
-    mc.button(label="Save Brow Attr", command=save_extra_controls)
+    mc.button(label="Save Brow Controls", command=save_extra_controls)
 
     # Pupil controls
     mc.separator(style='in')
@@ -327,13 +327,14 @@ def create_easyblink_ui():
     mc.textField("pupilAttrField", text=easyblink_data['pupil_attr'])
     mc.text(label="← Pupil Attribute")
     mc.setParent("..")
-    mc.button(label="Save Pupil Attr", command=save_extra_controls)
+    mc.button(label="Save Pupil Controls", command=save_extra_controls)
 
     # Animate
     mc.separator(style='in')
     mc.text(label="⚡ Animate", font="boldLabelFont")
     mc.button(label="Set Simple Blink", command=set_simple_blink, height=40)
     mc.button(label="Set Slow Blink", command=set_slow_blink, height=40)
+    mc.button(label="Set Fast Blink", command=set_fast_blink, height=40)
     
     # Reset
     mc.separator(style='in')
