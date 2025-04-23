@@ -211,7 +211,8 @@ def open_save_setup_ui(*args):
     mc.button(label="Save", command=save_setup)
     mc.button(label="Cancel", command=lambda *a: mc.deleteUI(win, window=True))
     mc.showWindow(win)
-
+    
+# Save setup    
 def save_setup(*args):
     name = mc.textField("setupNameField", q=True, text=True).strip()
     mc.deleteUI("saveSetupWin", window=True)
@@ -224,6 +225,7 @@ def save_setup(*args):
     if len(easyblink_setups) >= 6:
         mc.warning("Max 6 setups reached.")
         return
+
     # deep‐copy just the fields you need
     easyblink_setups[name] = {
         'left_eye': easyblink_data['left_eye'],
@@ -240,8 +242,11 @@ def save_setup(*args):
         'right_pupil': easyblink_data['right_pupil'],
         'pupil_attr': easyblink_data['pupil_attr']
     }
+
     mc.inViewMessage(amg=f"Setup '{name}' saved!", pos='topCenter', fade=True)
-        
+    # show the saved setups window automatically
+    refresh_saved_setups_ui()
+    
 # Load or delete setups
 def load_setup(name):
     data = easyblink_setups[name]
