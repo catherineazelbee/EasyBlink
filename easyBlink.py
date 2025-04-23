@@ -123,7 +123,7 @@ def set_simple_blink(*args):
             mc.setKeyframe(ctrl, attribute=attr, t=t,   value=orig)
             mc.setKeyframe(ctrl, attribute=attr, t=t+1, value=orig-0.05)
             mc.setKeyframe(ctrl, attribute=attr, t=t+8, value=orig)
-    mc.inViewMessage(amg="Blink animated!", pos='topCenter', fade=True)
+    mc.inViewMessage(amg="Simple Blink Set!", pos='topCenter', fade=True)
     
 # Animate slow blink
 def set_slow_blink(*args):
@@ -161,7 +161,43 @@ def set_slow_blink(*args):
             mc.setKeyframe(ctrl, attribute=attr, t=t,   value=orig)
             mc.setKeyframe(ctrl, attribute=attr, t=t+3, value=orig-0.1)
             mc.setKeyframe(ctrl, attribute=attr, t=t+13, value=orig)
-    mc.inViewMessage(amg="Blink animated!", pos='topCenter', fade=True)
+    mc.inViewMessage(amg="Slow Blink Set!", pos='topCenter', fade=True)
+    
+# Animate fast blink
+def set_fast_blink(*args):
+    if not all([easyblink_data['left_eye'], easyblink_data['right_eye'],
+                easyblink_data['left_attr'], easyblink_data['right_attr']]):
+        mc.warning("Please set eyes and blink controls first!")
+        return
+    t = mc.currentTime(q=True)
+    ov, cv, wv = easyblink_data['open'], easyblink_data['closed'], easyblink_data['wide']
+    # eyes
+    for side in ['left_eye','right_eye']:
+        ctrl = easyblink_data[side]
+        attr = easyblink_data['left_attr']  if side=='left_eye'  else easyblink_data['right_attr']
+        mc.setKeyframe(ctrl, attribute=attr, t=t,   value=ov)
+        mc.setKeyframe(ctrl, attribute=attr, t=t+2, value=cv)
+        mc.setKeyframe(ctrl, attribute=attr, t=t+4, value=wv)
+        mc.setKeyframe(ctrl, attribute=attr, t=t+6, value=ov)
+    # brows
+    for side in ['left_brow','right_brow']:
+        ctrl = easyblink_data[side]
+        if ctrl:
+            attr = easyblink_data['brow_attr']
+            orig = mc.getAttr(f"{ctrl}.{attr}")
+            mc.setKeyframe(ctrl, attribute=attr, t=t,   value=orig)
+            mc.setKeyframe(ctrl, attribute=attr, t=t+1, value=orig-0.1)
+            mc.setKeyframe(ctrl, attribute=attr, t=t+6, value=orig)
+    # pupils
+    for side in ['left_pupil','right_pupil']:
+        ctrl = easyblink_data[side]
+        if ctrl:
+            attr = easyblink_data['pupil_attr']
+            orig = mc.getAttr(f"{ctrl}.{attr}")
+            mc.setKeyframe(ctrl, attribute=attr, t=t,   value=orig)
+            mc.setKeyframe(ctrl, attribute=attr, t=t+1, value=orig-0.05)
+            mc.setKeyframe(ctrl, attribute=attr, t=t+6, value=orig)
+    mc.inViewMessage(amg="Fast Blink Set!", pos='topCenter', fade=True)
     
 # Prompt window to save setup
 def open_save_setup_ui(*args):
@@ -204,8 +240,8 @@ def save_setup(*args):
         'right_pupil': easyblink_data['right_pupil'],
         'pupil_attr': easyblink_data['pupil_attr']
     }
-    refresh_saved_setups_ui()
-
+    mc.inViewMessage(amg=f"Setup '{name}' saved!", pos='topCenter', fade=True)
+        
 # Load or delete setups
 def load_setup(name):
     data = easyblink_setups[name]
