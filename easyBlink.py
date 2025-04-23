@@ -296,11 +296,11 @@ def create_easyblink_ui():
         wordWrap=True
     )
     mc.rowLayout(numberOfColumns=2)
-    mc.button(label="Set Left Eye",  command=set_left_eye)
+    mc.button(label="Set Left Eye",  command=set_left_eye, backgroundColor = (0.78, 0.75, 0.85))
     mc.text("leftEyeLabel",  label="Left Eye: Not Set")
     mc.setParent("..")
     mc.rowLayout(numberOfColumns=2)
-    mc.button(label="Set Right Eye", command=set_right_eye)
+    mc.button(label="Set Right Eye", command=set_right_eye, backgroundColor = (0.78, 0.75, 0.85))
     mc.text("rightEyeLabel", label="Right Eye: Not Set")
     mc.setParent("..")
     mc.rowLayout(numberOfColumns=2)
@@ -319,7 +319,7 @@ def create_easyblink_ui():
     mc.text(label="Wide Value:")
     mc.floatField("wideField", value=easyblink_data['wide'])
     mc.setParent("..")
-    mc.button(label="Save Blink Controls", command=save_blink_controls)
+    mc.button(label="Save Blink Controls", command=save_blink_controls, backgroundColor = (0.65, 0.75, 0.65))
 
     # Eyebrow controls
     mc.separator(style='in')
@@ -330,18 +330,18 @@ def create_easyblink_ui():
         wordWrap=True
     )
     mc.rowLayout(numberOfColumns=2)
-    mc.button(label="Set Left Brow",  command=set_left_brow)
+    mc.button(label="Set Left Brow",  command=set_left_brow, backgroundColor = (0.78, 0.75, 0.85))
     mc.text("leftBrowLabel",  label="Left Brow: Not Set")
     mc.setParent("..")
     mc.rowLayout(numberOfColumns=2)
-    mc.button(label="Set Right Brow", command=set_right_brow)
+    mc.button(label="Set Right Brow", command=set_right_brow, backgroundColor = (0.78, 0.75, 0.85))
     mc.text("rightBrowLabel", label="Right Brow: Not Set")
     mc.setParent("..")
     mc.rowLayout(numberOfColumns=2)
     mc.textField("browAttrField", text=easyblink_data['brow_attr'])
     mc.text(label="← Brow Attribute")
     mc.setParent("..")
-    mc.button(label="Save Brow Controls", command=save_extra_controls)
+    mc.button(label="Save Brow Controls", command=save_extra_controls, backgroundColor = (0.65, 0.75, 0.65))
 
     # Pupil controls
     mc.separator(style='in')
@@ -352,36 +352,36 @@ def create_easyblink_ui():
         wordWrap=True
     )
     mc.rowLayout(numberOfColumns=2)
-    mc.button(label="Set Left Pupil",  command=set_left_pupil)
+    mc.button(label="Set Left Pupil",  command=set_left_pupil, backgroundColor = (0.78, 0.75, 0.85))
     mc.text("leftPupilLabel",  label="Left Pupil: Not Set")
     mc.setParent("..")
     mc.rowLayout(numberOfColumns=2)
-    mc.button(label="Set Right Pupil", command=set_right_pupil)
+    mc.button(label="Set Right Pupil", command=set_right_pupil, backgroundColor = (0.78, 0.75, 0.85))
     mc.text("rightPupilLabel", label="Right Pupil: Not Set")
     mc.setParent("..")
     mc.rowLayout(numberOfColumns=2)
     mc.textField("pupilAttrField", text=easyblink_data['pupil_attr'])
     mc.text(label="← Pupil Attribute")
     mc.setParent("..")
-    mc.button(label="Save Pupil Controls", command=save_extra_controls)
+    mc.button(label="Save Pupil Controls", command=save_extra_controls, backgroundColor = (0.65, 0.75, 0.65))
 
     # Animate
     mc.separator(style='in')
     mc.text(label="⚡ Animate", font="boldLabelFont")
-    mc.button(label="Set Simple Blink", command=set_simple_blink, height=40)
-    mc.button(label="Set Slow Blink", command=set_slow_blink, height=40)
-    mc.button(label="Set Fast Blink", command=set_fast_blink, height=40)
+    mc.button(label="Set Simple Blink", command=set_simple_blink, height=40, backgroundColor = (0.88, 0.78, 0.68))
+    mc.button(label="Set Slow Blink", command=set_slow_blink, height=40, backgroundColor = (0.88, 0.78, 0.68))
+    mc.button(label="Set Fast Blink", command=set_fast_blink, height=40, backgroundColor = (0.88, 0.78, 0.68))
     
     # Reset
     mc.separator(style='in')
     mc.text(label="🧹 Reset", font="boldLabelFont")
-    mc.button(label="Reset All to Defaults", command=clear_all_inputs, height=30, backgroundColor=(0.4,0.4,0.4))
+    mc.button(label="Reset All to Defaults", command=clear_all_inputs, height=30, backgroundColor = (0.78, 0.75, 0.85))
     
     #Save inputs
     mc.separator(style='in')
     mc.text(label="💾 Save Inputs", font="boldLabelFont")
-    mc.button(label="Save Setup…", command=open_save_setup_ui, height=30, backgroundColor=(0.2,0.5,0.2))
-    mc.button(label="View Saved Setups", command=refresh_saved_setups_ui, height=30, backgroundColor=(0.2,0.2,0.5))
+    mc.button(label="Save Setup…", command=open_save_setup_ui, height=30, backgroundColor = (0.65, 0.75, 0.65))
+    mc.button(label="View Saved Setups", command=refresh_saved_setups_ui, height=30, backgroundColor = (0.78, 0.75, 0.85))
 
     mc.showWindow(win)
 
