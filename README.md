@@ -6,9 +6,11 @@ A plugin designed to quickly animate blinks on different character rigs. Can cre
 Please note this plugin is not guarenteed to work for all rigs.
 
 # How to Use
-1. Ensure your selected rig has the correct setup. There should be a control for the blink (whatever moves the eyelid down). If controls are seperate, they should both follow
+1.
+  
+2. Ensure your selected rig has the correct setup. There should be a control for the blink (whatever moves the eyelid down). If controls are seperate, they should both follow the same 
 
-2. Assign
+4. Assign
 
 # Setup Demo Video
 
