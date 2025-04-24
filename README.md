@@ -42,5 +42,5 @@ Please note this plugin is not guarenteed to work for all rigs.
 # Credit
 Character rigs used in demo videos:
 - Deadpool by Kiel Figgins
-- Link by
-- The Waitress by 
+- Link by Christoph Schoch
+- The Waitress by François Boquet and Santiago Calle
