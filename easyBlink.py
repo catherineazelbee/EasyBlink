@@ -112,8 +112,8 @@ def set_simple_blink(*args):
             attr = easyblink_data['brow_attr']
             orig = mc.getAttr(f"{ctrl}.{attr}")
             mc.setKeyframe(ctrl, attribute=attr, t=t,   value=orig)
-            mc.setKeyframe(ctrl, attribute=attr, t=t+3, value=orig-0.1)
-            mc.setKeyframe(ctrl, attribute=attr, t=t+8, value=orig)
+            mc.setKeyframe(ctrl, attribute=attr, t=t+2, value=orig-0.1)
+            mc.setKeyframe(ctrl, attribute=attr, t=t+5, value=orig)
     # pupils
     for side in ['left_pupil','right_pupil']:
         ctrl = easyblink_data[side]
@@ -121,8 +121,8 @@ def set_simple_blink(*args):
             attr = easyblink_data['pupil_attr']
             orig = mc.getAttr(f"{ctrl}.{attr}")
             mc.setKeyframe(ctrl, attribute=attr, t=t,   value=orig)
-            mc.setKeyframe(ctrl, attribute=attr, t=t+1, value=orig-0.05)
-            mc.setKeyframe(ctrl, attribute=attr, t=t+8, value=orig)
+            mc.setKeyframe(ctrl, attribute=attr, t=t+2, value=orig-0.05)
+            mc.setKeyframe(ctrl, attribute=attr, t=t+5, value=orig)
     mc.inViewMessage(amg="Simple Blink Set!", pos='topCenter', fade=True)
     
 # Animate slow blink
@@ -218,7 +218,7 @@ def helpButton(text):
 def open_save_setup_ui(*args):
     if mc.window("saveSetupWin", exists=True):
         mc.deleteUI("saveSetupWin")
-    win = mc.window("saveSetupWin", title="Save EasyBlink Setup", widthHeight=(250, 80))
+    win = mc.window("saveSetupWin", title="Save EasyBlink Setup", widthHeight=(250, 8  0))
     mc.columnLayout(adjustableColumn=True, rowSpacing=5)
     mc.text(label="Enter a name for this setup:\n You can save a maximum of 6.")
     mc.textField("setupNameField")
