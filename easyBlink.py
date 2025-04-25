@@ -198,14 +198,29 @@ def set_fast_blink(*args):
             mc.setKeyframe(ctrl, attribute=attr, t=t+1, value=orig-0.05)
             mc.setKeyframe(ctrl, attribute=attr, t=t+6, value=orig)
     mc.inViewMessage(amg="Fast Blink Set!", pos='topCenter', fade=True)
-    
+
+# Help Button function
+def helpButton(text):
+    """
+    Create a small question-mark button that shows `text` as a tooltip
+    when hovered, and darkens its background on hover.
+    """
+    return mc.iconTextButton(
+        style='textOnly',
+        label='?',
+        width=18, height=18,
+        annotation=text,
+        backgroundColor=(0.75, 0.75, 0.75),
+    )
+
+
 # Prompt window to save setup
 def open_save_setup_ui(*args):
     if mc.window("saveSetupWin", exists=True):
         mc.deleteUI("saveSetupWin")
     win = mc.window("saveSetupWin", title="Save EasyBlink Setup", widthHeight=(250, 80))
     mc.columnLayout(adjustableColumn=True, rowSpacing=5)
-    mc.text(label="Enter a name for this setup (max 6):")
+    mc.text(label="Enter a name for this setup:\n You can save a maximum of 6.")
     mc.textField("setupNameField")
     mc.rowLayout(numberOfColumns=2, columnWidth2=(120,120), columnAlign2=("center","center"))
     mc.button(label="Save", command=save_setup)
@@ -327,13 +342,16 @@ def create_easyblink_ui():
     )
 
     # Eye controls
-    mc.separator(style='in', parent="easyBlinkCol")
-    mc.text(label="👁️ Blink Controls", font="boldLabelFont")
-    mc.text(
-        label="Select your left & right eye controls, then choose their blink attribute name. Then set your open/closed/wide values. Make sure names are the same as they are in script editor (place a keyframe with script editor open to see exact attribute names).",
-        align="center",
-        wordWrap=True
+    mc.separator(style='in')
+    mc.rowLayout(numberOfColumns=2, adjustableColumn=1, columnAlign=(1, "left"), columnAttach=[(1, 'left', 0), (2, 'right', 0)])
+    mc.text(label="👁️ Blink Controls", font="boldLabelFont", align="left")
+    helpButton(
+        "Select your left & right eye rig controls, then choose their blink\n"
+        "attribute name. Then set your open/closed/wide values. Make sure\n"
+        "names match exactly what Maya shows in the script editor. You can\n"
+        "place a keyframe to see the exact name in script editor."
     )
+    mc.setParent("..")
     mc.rowLayout(numberOfColumns=2)
     mc.button(label="Set Left Eye",  command=set_left_eye, backgroundColor = (0.78, 0.75, 0.85))
     mc.text("leftEyeLabel",  label="Left Eye: Not Set")
@@ -362,12 +380,10 @@ def create_easyblink_ui():
 
     # Eyebrow controls
     mc.separator(style='in')
-    mc.text(label="🥸 Brow Controls", font="boldLabelFont")
-    mc.text(
-        label="Select your left & right eyebrow controls and set attribute name.",
-        align="center",
-        wordWrap=True
-    )
+    mc.rowLayout(numberOfColumns=2, adjustableColumn=1, columnAlign=(1, "left"), columnAttach=[(1, 'left', 0), (2, 'right', 0)])
+    mc.text(label="🥸 Brow Controls", font="boldLabelFont", align="left")
+    helpButton("Select your left & right brow controls and set the attribute name exactly as it appears in script editor.")
+    mc.setParent("..")
     mc.rowLayout(numberOfColumns=2)
     mc.button(label="Set Left Brow",  command=set_left_brow, backgroundColor = (0.78, 0.75, 0.85))
     mc.text("leftBrowLabel",  label="Left Brow: Not Set")
@@ -384,12 +400,10 @@ def create_easyblink_ui():
 
     # Pupil controls
     mc.separator(style='in')
-    mc.text(label="👀 Pupil Controls", font="boldLabelFont")
-    mc.text(
-        label="Select your left & right pupil controls and set attribute name.",
-        align="center",
-        wordWrap=True
-    )
+    mc.rowLayout(numberOfColumns=2, adjustableColumn=1, columnAlign=(1, "left"), columnAttach=[(1, 'left', 0), (2, 'right', 0)])
+    mc.text(label="👀 Pupil Controls", font="boldLabelFont", align="left")
+    helpButton("Select your left & right pupil controls and set the attribute name exactly as it appears in script editor.")
+    mc.setParent("..")
     mc.rowLayout(numberOfColumns=2)
     mc.button(label="Set Left Pupil",  command=set_left_pupil, backgroundColor = (0.78, 0.75, 0.85))
     mc.text("leftPupilLabel",  label="Left Pupil: Not Set")
