@@ -19,8 +19,10 @@ easyblink_data = {
 
 easyblink_setups = {}
 
-# Generic setter for scene controls
 def set_control(control_name, label_name, label_prefix):
+    """
+    Generic setter for scene controls.
+    """
     sel = mc.ls(sl=True)
     if not sel:
         mc.warning(f"No object selected for {label_prefix}!")
@@ -36,8 +38,11 @@ def set_right_brow(*args): set_control('right_brow', "rightBrowLabel", "Right Br
 def set_left_pupil(*args): set_control('left_pupil', "leftPupilLabel", "Left Pupil")
 def set_right_pupil(*args):set_control('right_pupil',"rightPupilLabel","Right Pupil")
 
-# Normalize common attribute names
+
 def normalize_attr_name(attr):
+    """
+    Normalize common attribute names.
+    """
     attr = attr.strip().replace(" ", "")
     aliases = {
         "translatey":"translateY","translatex":"translateX","translatez":"translateZ",
@@ -45,9 +50,11 @@ def normalize_attr_name(attr):
         "scalex":"scaleX","scaley":"scaleY","scalez":"scaleZ"
     }
     return aliases.get(attr.lower(), attr)
-
-# Save blink attributes & values
+ 
 def save_blink_controls(*args):
+    """
+    Save blink attributes & values.
+    """
     l_attr = mc.textField("leftBlinkAttrField",  q=True, text=True)
     r_attr = mc.textField("rightBlinkAttrField", q=True, text=True)
     if not l_attr or not r_attr:
@@ -60,15 +67,19 @@ def save_blink_controls(*args):
     easyblink_data['wide']   = mc.floatField("wideField",   q=True, value=True)
     mc.inViewMessage(amg="Blink controls saved!", pos='topCenter', fade=True)
 
-# Save extra attributes for brows and pupils
+
 def save_extra_controls(*args):
+    """
+    Save extra attributes for brows and pupils.
+    """
     easyblink_data['brow_attr']   = normalize_attr_name(mc.textField("browAttrField",   q=True, text=True))
     easyblink_data['pupil_attr']  = normalize_attr_name(mc.textField("pupilAttrField", q=True, text=True))
     mc.inViewMessage(amg="Eyebrow & pupil attributes saved!", pos='topCenter', fade=True)
-
-# Reset all inputs to defaults
+ 
 def clear_all_inputs(*args):
-    # reset data
+    """
+    Reset all inputs to defaults.
+    """
     for k in easyblink_data:
         if isinstance(easyblink_data[k], str):
             if "_attr" in k:
@@ -91,6 +102,9 @@ def clear_all_inputs(*args):
 
 # Animate blink with optional brows & pupils
 def set_simple_blink(*args):
+    """
+    Creates a default simple blink animation.
+    """
     if not all([easyblink_data['left_eye'], easyblink_data['right_eye'],
                 easyblink_data['left_attr'], easyblink_data['right_attr']]):
         mc.warning("Please set eyes and blink controls first!")
@@ -122,11 +136,14 @@ def set_simple_blink(*args):
             orig = mc.getAttr(f"{ctrl}.{attr}")
             mc.setKeyframe(ctrl, attribute=attr, t=t,   value=orig)
             mc.setKeyframe(ctrl, attribute=attr, t=t+2, value=orig-0.05)
-            mc.setKeyframe(ctrl, attribute=attr, t=t+5, value=orig)
+            mc.setKeyframe(ctrl, attribute=attr, t=t+7, value=orig)
     mc.inViewMessage(amg="Simple Blink Set!", pos='topCenter', fade=True)
     
 # Animate slow blink
 def set_slow_blink(*args):
+    """
+    Creates a slow blink animation.
+    """
     if not all([easyblink_data['left_eye'], easyblink_data['right_eye'],
                 easyblink_data['left_attr'], easyblink_data['right_attr']]):
         mc.warning("Please set eyes and blink controls first!")
@@ -165,6 +182,9 @@ def set_slow_blink(*args):
     
 # Animate fast blink
 def set_fast_blink(*args):
+    """
+    Creates a fast blink animation.
+    """
     if not all([easyblink_data['left_eye'], easyblink_data['right_eye'],
                 easyblink_data['left_attr'], easyblink_data['right_attr']]):
         mc.warning("Please set eyes and blink controls first!")
@@ -199,11 +219,10 @@ def set_fast_blink(*args):
             mc.setKeyframe(ctrl, attribute=attr, t=t+6, value=orig)
     mc.inViewMessage(amg="Fast Blink Set!", pos='topCenter', fade=True)
 
-# Help Button function
+# Help Button 
 def helpButton(text):
     """
-    Create a small question-mark button that shows `text` as a tooltip
-    when hovered, and darkens its background on hover.
+    Create a small question-mark button that shows helpful information to the user.
     """
     return mc.iconTextButton(
         style='textOnly',
@@ -218,7 +237,7 @@ def helpButton(text):
 def open_save_setup_ui(*args):
     if mc.window("saveSetupWin", exists=True):
         mc.deleteUI("saveSetupWin")
-    win = mc.window("saveSetupWin", title="Save EasyBlink Setup", widthHeight=(250, 8  0))
+    win = mc.window("saveSetupWin", title="Save EasyBlink Setup", widthHeight=(250, 80))
     mc.columnLayout(adjustableColumn=True, rowSpacing=5)
     mc.text(label="Enter a name for this setup:\n You can save a maximum of 6.")
     mc.textField("setupNameField")
@@ -309,11 +328,10 @@ def refresh_saved_setups_ui(*args):
 
 # Build the UI
 def create_easyblink_ui():
-# delete old control
     if mc.workspaceControl("EasyBlinkWC", q=True, exists=True):
         mc.deleteUI("EasyBlinkWC", control=True)
 
-    # create a dockable workspaceControl
+    # docked workspace setup
     wc = mc.workspaceControl(
         "EasyBlinkWC",
         label="EasyBlink",
@@ -331,8 +349,6 @@ def create_easyblink_ui():
         horizontalScrollBarThickness=0, 
         verticalScrollBarThickness=16
     )
-
-    # now build your column inside that scrollLayout
     mc.columnLayout(
         "easyBlinkCol", 
         parent=scroll, 
@@ -430,7 +446,7 @@ def create_easyblink_ui():
     mc.text(label="🧹 Reset", font="boldLabelFont")
     mc.button(label="Reset All to Defaults", command=clear_all_inputs, height=30, backgroundColor = (0.78, 0.75, 0.85))
     
-    #Save inputs
+    # Save inputs
     mc.separator(style='in')
     mc.text(label="💾 Save Inputs", font="boldLabelFont")
     mc.button(label="Save Setup…", command=open_save_setup_ui, height=30, backgroundColor = (0.65, 0.75, 0.65))
