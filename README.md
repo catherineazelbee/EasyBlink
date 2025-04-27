@@ -10,7 +10,7 @@ Please note this plugin is not guarenteed to work for all rigs.
 // INSERT MP4 DEMO HERE
 
 # How to Use
-1. Download the code and move the **easyBlink.py** file to your scripts folder (likely "..maya/202x/scripts/). Load the script in the script editor in Maya (Windows -> General Editor -> Script Editor). Go to File -> Open script and open the easyBlink.py file and run it (Ctrl + Enter). The EasyBlink plugin window will open.
+1. Download the code and move the **easyBlink.py** file to your scripts folder (likely "..maya/202x/scripts/). Load the script in the script editor in Maya (Windows -> General Editor -> Script Editor). Go to File -> Open script and open the easyBlink.py file and run it (Ctrl + Enter). The EasyBlink plugin window will open. Works with Maya 2024 and 2025.
   
 2. Ensure your selected rig has the correct setup. There should be a control for the blink (whatever moves the eyelid down). If controls are seperate, they should both follow the same translations. Set the proper controls for the left and right eyelid by clicking the button when the corresponding control is selected. The name of the selected control will appear next to the button.
 
@@ -37,7 +37,7 @@ Please note this plugin is not guarenteed to work for all rigs.
 
 # Release Log
 04/25/25
-- First Released Version
+- First Released Version for Maya 2025
 
 # Credit
 Character rigs used in demo videos:
