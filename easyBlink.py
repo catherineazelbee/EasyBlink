@@ -126,7 +126,7 @@ def set_simple_blink(*args):
             attr = easyblink_data['brow_attr']
             orig = mc.getAttr(f"{ctrl}.{attr}")
             mc.setKeyframe(ctrl, attribute=attr, t=t,   value=orig)
-            mc.setKeyframe(ctrl, attribute=attr, t=t+2, value=orig-0.1)
+            mc.setKeyframe(ctrl, attribute=attr, t=t+1, value=orig-0.1)
             mc.setKeyframe(ctrl, attribute=attr, t=t+5, value=orig)
     # pupils
     for side in ['left_pupil','right_pupil']:
@@ -135,7 +135,7 @@ def set_simple_blink(*args):
             attr = easyblink_data['pupil_attr']
             orig = mc.getAttr(f"{ctrl}.{attr}")
             mc.setKeyframe(ctrl, attribute=attr, t=t,   value=orig)
-            mc.setKeyframe(ctrl, attribute=attr, t=t+2, value=orig-0.05)
+            mc.setKeyframe(ctrl, attribute=attr, t=t+1, value=orig-0.05)
             mc.setKeyframe(ctrl, attribute=attr, t=t+7, value=orig)
     mc.inViewMessage(amg="Simple Blink Set!", pos='topCenter', fade=True)
     
