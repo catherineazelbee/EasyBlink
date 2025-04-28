@@ -7,7 +7,7 @@ Please note that this plugin is not guaranteed to work for all rigs.
 
 # Setup Demo Video
 
-// INSERT MP4 DEMO HERE
+
 
 # How to Use
 1. Download the code and move the **easyBlink.py** file to your scripts folder (likely "..maya/202x/scripts/). Load the script in the script editor in Maya (Windows -> General Editor -> Script Editor). Go to File -> Open script and open the easyBlink.py file, and run it (Ctrl + Enter). The EasyBlink plugin window will open. Works with Maya 2024 and 2025.
