@@ -6,7 +6,7 @@ A plugin designed to quickly animate blinks on different character rigs. Can cre
 Please note that this plugin is not guaranteed to work for all rigs.
 
 # Setup Demo Video
-<video src="media/demoVideo.mp4" controls width="600"></video>
+[<video src="media/demoVideo.mp4" controls width="600"></video>](https://github.com/user-attachments/assets/11fbf1b1-f5f8-4514-a5b5-da1176b8c90e)
 
 # How to Use
 1. Download the code and move the **easyBlink.py** file to your scripts folder (likely "..maya/202x/scripts/). Load the script in the script editor in Maya (Windows -> General Editor -> Script Editor). Go to File -> Open script and open the easyBlink.py file, and run it (Ctrl + Enter). The EasyBlink plugin window will open. Works with Maya 2024 and 2025.
