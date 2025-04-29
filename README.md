@@ -45,7 +45,7 @@ Please note that this plugin is not guaranteed to work for all rigs.
 - Maya 2024
 
 # Credit
-Character rigs used in demo videos:
+Character rigs used in demo video:
 - Deadpool by Kiel Figgins
 - Link by Christoph Schoch
 - The Waitress by François Boquet and Santiago Calle
