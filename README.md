@@ -1,9 +1,11 @@
 # EasyBlink
- Repository for EasyBlink Maya Plugin by Catherine Azelby
+Repository for EasyBlink Maya Plugin by Catherine Azelby
 
 A plugin designed to quickly animate blinks on different character rigs. Can create three different kinds of blinks (simple, fast, slow). Additional eyebrow and pupil animation can be added to complement the blinks. Inputs can be saved and loaded to efficiently use the plugin on multiple rigs at a time. Designed in concept for time-efficient animation productions such as television CG. 
 
 Please note that this plugin is not guaranteed to work for all rigs.
+
+https://github.com/user-attachments/assets/795d0a30-2084-4449-b766-608fa8cb3a3f
 
 # Setup Demo Video
 [![Watch the video]([thumbnail-image.png)](https://vimeo.com/YOUR_VIDEO_ID](https://vimeo.com/1079586853/fc75f06453?share=copy))
