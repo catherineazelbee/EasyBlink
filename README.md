@@ -37,7 +37,7 @@ Please note that this plugin is not guaranteed to work for all rigs.
 - **Save Setups:** Allows the user to save plugin inputs and name them, allowing them to be loaded later. A separate window will pop up where you can view your stored setups. You can save a maximum of 6 setups.
 
 # Release Log
-04/25/25
+04/30/25
 - First Released Version
 
 # Tested Platforms
